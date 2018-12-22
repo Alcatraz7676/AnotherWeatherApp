@@ -3,6 +3,7 @@ package com.ovchinnikov.anotherweatherapp.ui.main
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -31,7 +32,9 @@ class WeatherListActivity : MvpAppCompatActivity(), WeatherListView {
             weather_list.adapter = WeatherListAdapter()
         }
 
-        weatherListPresenter.requestCurrentWeather()
+        if (savedInstanceState == null && (weather_list.adapter as WeatherListAdapter).itemCount == 0) {
+            weatherListPresenter.requestCurrentWeather()
+        }
     }
 
     override fun setWeather(weather: List<WeatherItem>) {

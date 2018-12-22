@@ -3,7 +3,7 @@ package com.ovchinnikov.anotherweatherapp.presentation
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.ovchinnikov.anotherweatherapp.commons.ExtensionsUtils
+import com.ovchinnikov.anotherweatherapp.db.WeatherDatabase
 import com.ovchinnikov.anotherweatherapp.repository.WeatherListRepository
 import com.ovchinnikov.anotherweatherapp.ui.main.WeatherListView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -24,11 +24,8 @@ class WeatherListPresenter : MvpPresenter<WeatherListView>() {
 
     fun requestCurrentWeather() {
 
-        val defaultCities = ExtensionsUtils.DefaultIdsList
-
-        val subscription = weatherRepository.getCurrentWeather(defaultCities)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+        val subscription = weatherRepository
+            .getCurrentWeather()
             .subscribe(
                 {
                         weatherList ->

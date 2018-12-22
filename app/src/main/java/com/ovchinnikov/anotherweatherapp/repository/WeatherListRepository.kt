@@ -1,30 +1,20 @@
 package com.ovchinnikov.anotherweatherapp.repository
 
 import com.ovchinnikov.anotherweatherapp.api.RestAPI
-import com.ovchinnikov.anotherweatherapp.commons.ExtensionsUtils
 import com.ovchinnikov.anotherweatherapp.commons.WeatherItem
-import com.ovchinnikov.anotherweatherapp.commons.getWeatherState
-import io.reactivex.Observable
+import com.ovchinnikov.anotherweatherapp.db.CityId
+import com.ovchinnikov.anotherweatherapp.db.WeatherDatabase
+import io.reactivex.Maybe
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class WeatherListRepository(private val api: RestAPI = RestAPI()) {
 
-    fun getCurrentWeather(defaultCities: IntArray): Observable<List<WeatherItem>> = Observable.create {
-        subscriber ->
-        val callResponse = api.getWeather(defaultCities)
-        val response = callResponse.execute()
+    private fun requestWeather(cityList: List<CityId>) = api.getWeather(cityList)
 
-        if (response.isSuccessful) {
-            val weatherList = response.body()?.list?.map {
-                val temperature = it.temp
-                val weather = it.weather[0]
-                WeatherItem(it.name, temperature.tempMin.toInt(), temperature.tempMax.toInt(), weather.weatherName, weather.id.getWeatherState())
-            }
-            if (weatherList != null) {
-                subscriber.onNext(weatherList)
-            }
-            subscriber.onComplete()
-        } else {
-            subscriber.onError(Throwable(response.message()))
-        }
-    }
+    fun getCurrentWeather(): Maybe<List<WeatherItem>> = WeatherDatabase.getInstance()
+        .weatherDao().getIds()
+        .flatMapSingleElement { list -> requestWeather(list) }
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
 }

@@ -1,6 +1,7 @@
 package com.ovchinnikov.anotherweatherapp.api
 
-import retrofit2.Call
+
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,5 +15,5 @@ interface OpenWeatherApi {
     fun getCurrentWeatherByCityIds(@Query("id") ids: String,
                                    @Query("lang") language: String = "ru",
                                    @Query("units") temperatureUnits: String = "metric",
-                                   @Query("APPID") apiKey: String = API_KEY): Call<WeatherListResponse>
+                                   @Query("APPID") apiKey: String = API_KEY): Single<WeatherListResponse>
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.ovchinnikov.anotherweatherapp.R
+import com.ovchinnikov.anotherweatherapp.db.CityId
 import com.squareup.picasso.Picasso
 
 fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View =
@@ -36,9 +37,24 @@ fun Int.getWeatherState() = when(this) {
     else -> WeatherIcon.NONE
 }
 
-class ExtensionsUtils {
+class Utils {
     companion object {
-        val DefaultIdsList = intArrayOf(524901, 498817, 1496747, 1486209, 520555, 551487, 1508291, 1496153, 499099,
-            501175, 479561, 1502026, 511196, 472045, 472757)
+        val DefaultIdsList = arrayOf(
+            CityId(524901),
+            CityId(498817),
+            CityId(1496747),
+            CityId(1486209),
+            CityId(520555),
+            CityId(551487),
+            CityId(1508291),
+            CityId(1496153),
+            CityId(499099),
+            CityId(501175),
+            CityId(479561),
+            CityId(1502026),
+            CityId(511196),
+            CityId(472045),
+            CityId(472757)
+        )
     }
 }
