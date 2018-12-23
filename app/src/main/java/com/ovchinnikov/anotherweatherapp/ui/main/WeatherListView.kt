@@ -11,4 +11,8 @@ interface WeatherListView : MvpView {
     fun setWeather(weather: List<WeatherItem>)
     @StateStrategyType(SkipStrategy::class)
     fun showSnackbar(errorMessage: String)
+    fun showErrorView()
+    fun hideErrorView()
+    fun showLoading()
+    fun hideLoading()
 }

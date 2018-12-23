@@ -2,7 +2,6 @@ package com.ovchinnikov.anotherweatherapp.ui.main.adapter
 
 import android.support.v4.util.SparseArrayCompat
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.ViewGroup
 import com.ovchinnikov.anotherweatherapp.commons.WeatherItem
 import com.ovchinnikov.anotherweatherapp.commons.adapter.AdapterConstants

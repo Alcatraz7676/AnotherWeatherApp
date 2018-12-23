@@ -1,15 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
-             android:layout_height="match_parent">
+             android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools">
     <android.support.v7.widget.RecyclerView
+            tools:visibility="gone"
             android:id="@+id/weather_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"/>
+    <RelativeLayout
+            android:id="@+id/empty_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                    android:id="@+id/empty_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:text="@string/error_title"
+                    android:textAppearance="?android:textAppearanceMedium"/>
+
+        <Button
+                android:id="@+id/reload_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_below="@+id/empty_title_text"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/reload_button_text"/>
+
+    </RelativeLayout>
     <ProgressBar
+            tools:visibility="gone"
             android:id="@+id/pb_loading_indicator"
             android:layout_width="42dp"
             android:layout_height="42dp"

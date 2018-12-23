@@ -8,7 +8,6 @@ import com.ovchinnikov.anotherweatherapp.commons.WeatherItem
 import com.ovchinnikov.anotherweatherapp.commons.adapter.ViewType
 import com.ovchinnikov.anotherweatherapp.commons.adapter.ViewTypeDelegateAdapter
 import com.ovchinnikov.anotherweatherapp.commons.inflate
-import com.ovchinnikov.anotherweatherapp.commons.setImageFromResource
 import kotlinx.android.synthetic.main.weather_item.view.*
 
 class WeatherDelegateAdapter : ViewTypeDelegateAdapter {
@@ -25,15 +24,15 @@ class WeatherDelegateAdapter : ViewTypeDelegateAdapter {
 
         fun bind(item: WeatherItem) = with(itemView) {
             when(item.weatherIcon) {
-                WeatherIcon.CLEAR -> weather_icon.setImageFromResource(R.drawable.ic_clear)
-                WeatherIcon.CLOUDY -> weather_icon.setImageFromResource(R.drawable.ic_cloudy)
-                WeatherIcon.FOG -> weather_icon.setImageFromResource(R.drawable.ic_fog)
-                WeatherIcon.LIGHT_CLOUDS -> weather_icon.setImageFromResource(R.drawable.ic_light_clouds)
-                WeatherIcon.LIGHT_RAIN -> weather_icon.setImageFromResource(R.drawable.ic_light_rain)
-                WeatherIcon.RAIN -> weather_icon.setImageFromResource(R.drawable.ic_rain)
-                WeatherIcon.SNOW -> weather_icon.setImageFromResource(R.drawable.ic_snow)
-                WeatherIcon.STORM -> weather_icon.setImageFromResource(R.drawable.ic_storm)
-                else -> weather_icon.setImageFromResource(R.mipmap.ic_launcher_round)
+                WeatherIcon.CLEAR -> weather_icon.setImageResource(R.drawable.art_clear)
+                WeatherIcon.CLOUDY -> weather_icon.setImageResource(R.drawable.art_clouds)
+                WeatherIcon.FOG -> weather_icon.setImageResource(R.drawable.art_fog)
+                WeatherIcon.LIGHT_CLOUDS -> weather_icon.setImageResource(R.drawable.art_light_clouds)
+                WeatherIcon.LIGHT_RAIN -> weather_icon.setImageResource(R.drawable.art_light_rain)
+                WeatherIcon.RAIN -> weather_icon.setImageResource(R.drawable.art_rain)
+                WeatherIcon.SNOW -> weather_icon.setImageResource(R.drawable.art_snow)
+                WeatherIcon.STORM -> weather_icon.setImageResource(R.drawable.art_storm)
+                else -> weather_icon.setImageResource(R.mipmap.ic_launcher_round)
             }
             city.text = item.locationName
             weather_description.text = item.weatherName

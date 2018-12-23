@@ -3,8 +3,9 @@ package com.ovchinnikov.anotherweatherapp.ui.main
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
@@ -35,15 +36,37 @@ class WeatherListActivity : MvpAppCompatActivity(), WeatherListView {
         if (savedInstanceState == null && (weather_list.adapter as WeatherListAdapter).itemCount == 0) {
             weatherListPresenter.requestCurrentWeather()
         }
+
+        reload_button.setOnClickListener {
+            weatherListPresenter.requestCurrentWeather()
+            hideErrorView()
+            showLoading()
+        }
     }
 
     override fun setWeather(weather: List<WeatherItem>) {
         (weather_list.adapter as WeatherListAdapter).setWeather(weather)
-        pb_loading_indicator.visibility = View.GONE
     }
 
     override fun showSnackbar(errorMessage: String) {
         Snackbar.make(weather_list, errorMessage, Snackbar.LENGTH_LONG).show()
+        hideLoading()
+        showErrorView()
+    }
+
+    override fun showErrorView() {
+        empty_view.visibility = VISIBLE
+    }
+
+    override fun hideErrorView() {
+        empty_view.visibility = GONE
+    }
+
+    override fun showLoading() {
+        pb_loading_indicator.visibility = VISIBLE
+    }
+
+    override fun hideLoading() {
         pb_loading_indicator.visibility = View.GONE
     }
 

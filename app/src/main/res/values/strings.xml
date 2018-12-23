@@ -1,6 +1,8 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">AnotherWeatherApp</string>
-    <string name="format_temperature">
+    <string name="app_name" translatable="false">AnotherWeatherApp</string>
+    <string name="format_temperature" translatable="false">
         <xliff:g id="temp">%1d</xliff:g>\u00B0
     </string>
+    <string name="error_title">Error while loading weather list, please try again.</string>
+    <string name="reload_button_text">TRY AGAIN</string>
 </resources>

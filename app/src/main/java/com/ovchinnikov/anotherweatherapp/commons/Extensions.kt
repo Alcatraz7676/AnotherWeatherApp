@@ -19,10 +19,6 @@ fun ImageView.loadImg(imageUrl: String) {
         Picasso.get().load(imageUrl).into(this)
 }
 
-fun ImageView.setImageFromResource(drawable: Int) {
-    Picasso.get().load(drawable).into(this)
-}
-
 fun Int.getWeatherState() = when(this) {
     in 200..232 -> WeatherIcon.STORM
     in 300..321 -> WeatherIcon.RAIN
