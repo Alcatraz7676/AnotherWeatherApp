@@ -5,4 +5,5 @@
     </string>
     <string name="error_title">Error while loading weather list, please try again.</string>
     <string name="reload_button_text">TRY AGAIN</string>
+    <string name="city_input_hint">Location</string>
 </resources>

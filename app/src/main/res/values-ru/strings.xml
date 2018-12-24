@@ -2,4 +2,5 @@
 <resources>
     <string name="error_title">Произошла ошибка во время загрузки списка погоды, пожалуйста повторите снова.</string>
     <string name="reload_button_text">ПОВТОРИТЬ</string>
+    <string name="city_input_hint">Локация</string>
 </resources>

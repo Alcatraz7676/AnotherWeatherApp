@@ -2,10 +2,12 @@ package com.ovchinnikov.anotherweatherapp.ui.main
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.EditText
 import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
@@ -30,7 +32,7 @@ class WeatherListActivity : MvpAppCompatActivity(), WeatherListView {
         weather_list.layoutManager = linearLayout
 
         if (weather_list.adapter == null) {
-            weather_list.adapter = WeatherListAdapter()
+            weather_list.adapter = WeatherListAdapter { addItemClicked() }
         }
 
         if (savedInstanceState == null && (weather_list.adapter as WeatherListAdapter).itemCount == 0) {
@@ -42,6 +44,26 @@ class WeatherListActivity : MvpAppCompatActivity(), WeatherListView {
             hideErrorView()
             showLoading()
         }
+    }
+
+    private fun addItemClicked() {
+        showDialog()
+    }
+
+    private fun showDialog() {
+        val alert = AlertDialog.Builder(this)
+
+        val editText = layoutInflater.inflate(R.layout.adding_dialog, null) as EditText
+        with (alert) {
+            setTitle("Введите название города")
+            setPositiveButton("ОК") {
+                    dialog, _ ->
+                dialog.dismiss()
+            }
+        }
+        val dialog = alert.create()
+        dialog.setView(editText)
+        dialog.show()
     }
 
     override fun setWeather(weather: List<WeatherItem>) {
