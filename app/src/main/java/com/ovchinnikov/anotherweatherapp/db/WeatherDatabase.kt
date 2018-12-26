@@ -1,19 +1,18 @@
 package com.ovchinnikov.anotherweatherapp.db
 
 import android.arch.persistence.db.SupportSQLiteDatabase
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
+import android.arch.persistence.room.*
 import android.content.Context
 import android.util.Log
 import com.ovchinnikov.anotherweatherapp.App
 import com.ovchinnikov.anotherweatherapp.commons.Utils
-import io.reactivex.Maybe
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.ovchinnikov.anotherweatherapp.db.converters.WeatherIconConverter
+import com.ovchinnikov.anotherweatherapp.db.entities.CityId
+import com.ovchinnikov.anotherweatherapp.db.entities.Weather
 import java.util.concurrent.Executors
 
-@Database(entities = [CityId::class], version = 1)
+@Database(entities = [CityId::class, Weather::class], version = 1)
+@TypeConverters(WeatherIconConverter::class)
 abstract class WeatherDatabase : RoomDatabase() {
 
     abstract fun weatherDao(): WeatherDao

@@ -33,8 +33,15 @@ class WeatherListAdapter(addClickListener: () -> Unit) : RecyclerView.Adapter<Re
     override fun getItemViewType(position: Int) = items[position].getViewType()
 
     fun setWeather(weatherList: List<WeatherItem>) {
+        val initPosition = getLastPosition()
+        if (initPosition != 0) {
+            items.removeAt(initPosition)
+            notifyItemRemoved(initPosition)
+        }
         items.addAll(weatherList)
         items.add(addingItem)
-        notifyItemRangeInserted(0, items.size)
+        notifyItemRangeInserted(initPosition, items.size)
     }
+
+    private fun getLastPosition() = if (items.lastIndex == -1) 0 else items.lastIndex
 }

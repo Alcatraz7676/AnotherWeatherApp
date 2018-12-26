@@ -3,7 +3,8 @@ package com.ovchinnikov.anotherweatherapp.presentation
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.ovchinnikov.anotherweatherapp.repository.WeatherListRepository
+import com.ovchinnikov.anotherweatherapp.repository.DatabaseRepository
+import com.ovchinnikov.anotherweatherapp.repository.WeatherRepository
 import com.ovchinnikov.anotherweatherapp.ui.main.WeatherListView
 import io.reactivex.disposables.CompositeDisposable
 
@@ -12,17 +13,17 @@ class WeatherListPresenter : MvpPresenter<WeatherListView>() {
 
     private lateinit var subscriptions: CompositeDisposable
     private val weatherRepository by lazy {
-        WeatherListRepository()
+        WeatherRepository(DatabaseRepository())
     }
 
     fun onCreate() {
         subscriptions = CompositeDisposable()
     }
 
-    fun requestCurrentWeather() {
+    fun requestCurrentWeatherList() {
 
         val subscription = weatherRepository
-            .getCurrentWeather()
+            .getCurrentWeatherList()
             .subscribe(
                 {
                         weatherList ->
@@ -39,6 +40,24 @@ class WeatherListPresenter : MvpPresenter<WeatherListView>() {
                         hideLoading()
                         showErrorView()
                     }
+                }
+            )
+        subscriptions.add(subscription)
+    }
+
+    fun requestCurrentWeatherCity(cityName: String) {
+        val subscription = weatherRepository
+            .getCurrentWeather(cityName)
+            .subscribe(
+                {
+                        weather ->
+                    viewState.setWeather(listOf(weather))
+
+                },
+                {
+                        e ->
+                    Log.d( "DebugTag", e.toString())
+                    viewState.showSnackbar("Город не найден")
                 }
             )
         subscriptions.add(subscription)

@@ -36,11 +36,11 @@ class WeatherListActivity : MvpAppCompatActivity(), WeatherListView {
         }
 
         if (savedInstanceState == null && (weather_list.adapter as WeatherListAdapter).itemCount == 0) {
-            weatherListPresenter.requestCurrentWeather()
+            weatherListPresenter.requestCurrentWeatherList()
         }
 
         reload_button.setOnClickListener {
-            weatherListPresenter.requestCurrentWeather()
+            weatherListPresenter.requestCurrentWeatherList()
             hideErrorView()
             showLoading()
         }
@@ -53,16 +53,18 @@ class WeatherListActivity : MvpAppCompatActivity(), WeatherListView {
     private fun showDialog() {
         val alert = AlertDialog.Builder(this)
 
-        val editText = layoutInflater.inflate(R.layout.adding_dialog, null) as EditText
+        val dialogView = layoutInflater.inflate(R.layout.adding_dialog, null)
+        val editText = dialogView.findViewById<EditText>(R.id.city_input)
         with (alert) {
             setTitle("Введите название города")
             setPositiveButton("ОК") {
                     dialog, _ ->
                 dialog.dismiss()
+                weatherListPresenter.requestCurrentWeatherCity(editText.text.toString())
             }
         }
         val dialog = alert.create()
-        dialog.setView(editText)
+        dialog.setView(dialogView)
         dialog.show()
     }
 
@@ -72,8 +74,6 @@ class WeatherListActivity : MvpAppCompatActivity(), WeatherListView {
 
     override fun showSnackbar(errorMessage: String) {
         Snackbar.make(weather_list, errorMessage, Snackbar.LENGTH_LONG).show()
-        hideLoading()
-        showErrorView()
     }
 
     override fun showErrorView() {

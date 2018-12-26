@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.ovchinnikov.anotherweatherapp.R
-import com.ovchinnikov.anotherweatherapp.db.CityId
+import com.ovchinnikov.anotherweatherapp.db.entities.CityId
 import com.squareup.picasso.Picasso
 
 fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View =
