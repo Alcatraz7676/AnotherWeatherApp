@@ -3,7 +3,10 @@
     <string name="format_temperature" translatable="false">
         <xliff:g id="temp">%1d</xliff:g>\u00B0
     </string>
-    <string name="error_title">Error while loading weather list, please try again.</string>
+    <string name="error_weather">Error while loading weather list, please try again.</string>
     <string name="reload_button_text">TRY AGAIN</string>
     <string name="city_input_hint">Location</string>
+    <string name="error_forecast">Error while loading forecast weather, please try again.</string>
+    <string name="max_title">Maximum</string>
+    <string name="Minimum">Minimum</string>
 </resources>

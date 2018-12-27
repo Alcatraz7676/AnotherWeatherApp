@@ -11,7 +11,7 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"/>
     <RelativeLayout
-            android:id="@+id/empty_view"
+            android:id="@+id/error_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -19,20 +19,20 @@
             tools:visibility="visible">
 
             <TextView
-                    android:id="@+id/empty_title_text"
+                    android:id="@+id/error_title_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="8dp"
                     android:fontFamily="sans-serif-medium"
                     android:gravity="center"
-                    android:text="@string/error_title"
+                    android:text="@string/error_weather"
                     android:textAppearance="?android:textAppearanceMedium"/>
 
         <Button
                 android:id="@+id/reload_button"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_below="@+id/empty_title_text"
+                android:layout_below="@+id/error_title_text"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

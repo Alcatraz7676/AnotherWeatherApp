@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="error_title">Произошла ошибка во время загрузки списка погоды, пожалуйста повторите снова.</string>
+    <string name="error_weather">Произошла ошибка во время загрузки списка погоды, пожалуйста повторите снова.</string>
     <string name="reload_button_text">ПОВТОРИТЬ</string>
     <string name="city_input_hint">Локация</string>
+    <string name="error_forecast">Произошла ошибка во время загрузки прогноза погоды, пожалуйста повторите снова.</string>
+    <string name="max_title">Максимум</string>
+    <string name="Minimum">Минимум</string>
 </resources>

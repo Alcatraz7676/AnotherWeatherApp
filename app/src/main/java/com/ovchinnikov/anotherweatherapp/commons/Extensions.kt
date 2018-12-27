@@ -33,6 +33,16 @@ fun Int.getWeatherState() = when(this) {
     else -> WeatherIcon.NONE
 }
 
+fun String.getYear() = this.split(" ".toRegex())[0].split("-")[0].toInt()
+
+fun String.getMonth() = this.split(" ".toRegex())[0].split("-")[1].toInt()
+
+fun String.getDay() = this.split(" ".toRegex())[0].split("-")[2].toInt()
+
+fun String.getHour() = this.split(" ".toRegex())[1].split(":")[0].toInt()
+
+fun String.getMinutes() = this.split(" ".toRegex())[1].split(":")[1].toInt()
+
 class Utils {
     companion object {
         val DefaultIdsList = arrayOf(

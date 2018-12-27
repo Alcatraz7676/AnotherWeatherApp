@@ -7,6 +7,7 @@ class WeatherListResponse(val list: List<WeatherItemResponse>)
 class WeatherItemResponse(
     val id: Int,
     val name: String,
+    @Json(name = "dt_txt") val date: String,
     @Json(name = "main") val temp: TemperatureResponse,
     val weather: List<WeatherResponse>
 )

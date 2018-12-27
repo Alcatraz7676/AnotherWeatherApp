@@ -14,6 +14,7 @@ import com.arellomobile.mvp.presenter.PresenterType
 import com.ovchinnikov.anotherweatherapp.R
 import com.ovchinnikov.anotherweatherapp.commons.WeatherItem
 import com.ovchinnikov.anotherweatherapp.presentation.WeatherListPresenter
+import com.ovchinnikov.anotherweatherapp.ui.detail.DetailActivity
 import com.ovchinnikov.anotherweatherapp.ui.main.adapter.WeatherListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -32,7 +33,8 @@ class WeatherListActivity : MvpAppCompatActivity(), WeatherListView {
         weather_list.layoutManager = linearLayout
 
         if (weather_list.adapter == null) {
-            weather_list.adapter = WeatherListAdapter { addItemClicked() }
+            weather_list.adapter = WeatherListAdapter ( { addItemClicked() },
+                { id: Int, name: String -> weatherItemClicked(id, name) } )
         }
 
         if (savedInstanceState == null && (weather_list.adapter as WeatherListAdapter).itemCount == 0) {
@@ -48,6 +50,11 @@ class WeatherListActivity : MvpAppCompatActivity(), WeatherListView {
 
     private fun addItemClicked() {
         showDialog()
+    }
+
+    private fun weatherItemClicked(id: Int, name: String) {
+        val intent = DetailActivity.newIntent(this, id, name)
+        startActivity(intent)
     }
 
     private fun showDialog() {
@@ -77,11 +84,11 @@ class WeatherListActivity : MvpAppCompatActivity(), WeatherListView {
     }
 
     override fun showErrorView() {
-        empty_view.visibility = VISIBLE
+        error_view.visibility = VISIBLE
     }
 
     override fun hideErrorView() {
-        empty_view.visibility = GONE
+        error_view.visibility = GONE
     }
 
     override fun showLoading() {

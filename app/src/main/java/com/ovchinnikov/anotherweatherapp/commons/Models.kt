@@ -2,8 +2,10 @@ package com.ovchinnikov.anotherweatherapp.commons
 
 import com.ovchinnikov.anotherweatherapp.commons.adapter.AdapterConstants
 import com.ovchinnikov.anotherweatherapp.commons.adapter.ViewType
+import java.util.*
 
 data class WeatherItem(
+    val id: Int,
     val locationName: String,
     val tempMin: Int,
     val tempMax: Int,
@@ -24,3 +26,10 @@ enum class WeatherIcon {
     STORM,
     NONE
 }
+
+data class ForecastItem(
+    val date: Calendar,
+    val tempMin: Int,
+    val tempMax: Int,
+    val weatherIcon: WeatherIcon
+)

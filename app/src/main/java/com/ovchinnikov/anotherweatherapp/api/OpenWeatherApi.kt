@@ -23,4 +23,10 @@ interface OpenWeatherApi {
                                     @Query("lang") language: String = "ru",
                                     @Query("units") temperatureUnits: String = "metric",
                                     @Query("APPID") apiKey: String = API_KEY): Single<WeatherItemResponse>
+
+    @GET("/data/2.5/forecast")
+    fun getForecastWeatherByCityId(@Query("id") id: String,
+                                    @Query("lang") language: String = "ru",
+                                    @Query("units") temperatureUnits: String = "metric",
+                                    @Query("APPID") apiKey: String = API_KEY): Single<WeatherListResponse>
 }

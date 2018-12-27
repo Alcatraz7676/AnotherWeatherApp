@@ -8,7 +8,7 @@ import com.ovchinnikov.anotherweatherapp.commons.adapter.AdapterConstants
 import com.ovchinnikov.anotherweatherapp.commons.adapter.ViewType
 import com.ovchinnikov.anotherweatherapp.commons.adapter.ViewTypeDelegateAdapter
 
-class WeatherListAdapter(addClickListener: () -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class WeatherListAdapter(addClickListener: () -> Unit, weatherClickListener: (Int, String) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: ArrayList<ViewType>
     private var delegateAdapters = SparseArrayCompat<ViewTypeDelegateAdapter>()
@@ -17,7 +17,7 @@ class WeatherListAdapter(addClickListener: () -> Unit) : RecyclerView.Adapter<Re
     }
 
     init {
-        delegateAdapters.put(AdapterConstants.WEATHER, WeatherDelegateAdapter())
+        delegateAdapters.put(AdapterConstants.WEATHER, WeatherDelegateAdapter(weatherClickListener))
         delegateAdapters.put(AdapterConstants.ADDING, AddingDelegateAdapter(addClickListener))
         items = ArrayList()
     }
